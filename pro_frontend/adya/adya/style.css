@@ -1,0 +1,88 @@
+body{
+    font-family: Montserrat,sans-serif;
+    font-size: medium ;
+    background-color: white;
+}
+.button{
+    background-color: #034ea1;
+    padding: 16px 22px;
+    font-weight: 400;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: medium;
+}
+h2{
+    text-align: center;
+}
+#my_camera{
+    border: 2px solid #00b7ac;
+    margin-left:40px ;
+    padding: 10px;
+    border-radius: 16px;
+}
+.live{
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    
+}
+.info{
+    width: 600px;
+    border-radius: 24px;
+    /* background-image: linear-gradient(to right,#034ea1,#00b7ac); */
+    border: 2px solid #00b7ac;
+    font-weight: 300;
+    text-align: left;
+    padding: 40px 14px;
+    align-items: start;
+    color: black;
+    margin-right: 50px;
+}
+h3{
+    text-align: center;
+}
+.frame1{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    border-radius: 14px;
+}
+p{
+    margin-left: 100px;
+    font-weight:600;
+    line-height: 320%;
+}
+.ticket{
+    background-image: linear-gradient(to right,#034ea1,#00b7ac);
+    margin: 40px auto;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+.header{
+    height: 80px;
+    width: 100%;
+    margin-top: -7px;
+}
+.logo{
+    padding: 10px 16px;
+    margin-bottom: 0;
+}
+.nav
+{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    text-decoration: none;
+    color: white;
+    background-image: linear-gradient(to right,#034ea1,#00b7ac) ;
+    padding: 14px;
+
+}
+a{
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
