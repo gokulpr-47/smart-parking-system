@@ -2,7 +2,7 @@ import axios from "axios";
 import config from "../config/index.js";
 
 export default class qrCodeServices {
-  async getQrCode() {
+  async getQrCode(cost) {
     const currentTimestampPlus2Minutes = Math.floor(Date.now() / 1000) + 200;
 
     const data = {
@@ -10,7 +10,7 @@ export default class qrCodeServices {
       name: "Store Front Display",
       usage: "single_use",
       fixed_amount: true,
-      payment_amount: 300,
+      payment_amount: cost,
       description: "For Store 1",
       close_by: currentTimestampPlus2Minutes,
       notes: {
