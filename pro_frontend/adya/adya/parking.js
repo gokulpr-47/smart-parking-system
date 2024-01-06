@@ -61,3 +61,111 @@ function closeSetupPopup() {
     console.error(error);
   }
 })();
+
+//creating subdivs
+function createParkingLot(numCategories, categoryName) {
+  let parkingLot = [];
+  if (categoryName == "b") {
+    for (let i = 0; i < numCategories; i++) {
+      let category = [];
+      category.push({
+        spotName: `${categoryName}${i + 1}`,
+        isOccupied: false,
+      });
+      parkingLot.push(category);
+    }
+    return parkingLot;
+  }
+  for (let i = 0; i < numCategories; i++) {
+    let category = [];
+    for (let j = 1; j <= 6; j++) {
+      category.push({
+        spotName: `${categoryName}${i + 1}${j}`,
+        isOccupied: false,
+      });
+    }
+    parkingLot.push(category);
+  }
+  return parkingLot;
+}
+
+function displayParkingLot(parkingLot) {
+  let parkingLotDiv = document.querySelector(".small-car");
+  parkingLot.forEach((category) => {
+    let categoryDiv = document.createElement("div");
+    categoryDiv.className = "category2";
+    category.forEach((spot) => {
+      let spotDiv = document.createElement("div");
+      spotDiv.className = "spot";
+
+      if (spot.isOccupied) {
+        spotDiv.classList.add("occupied");
+      } else {
+        spotDiv.classList.add("vacant");
+      }
+
+      spotDiv.textContent = spot.spotName;
+      categoryDiv.appendChild(spotDiv);
+    });
+    parkingLotDiv.appendChild(categoryDiv);
+  });
+}
+
+function displayParkingLotLarge(parkingLot) {
+  let parkingLotDiv = document.querySelector(".large-car");
+  parkingLot.forEach((category) => {
+    let categoryDiv = document.createElement("div");
+    categoryDiv.className = "category2";
+    category.forEach((spot) => {
+      let spotDiv = document.createElement("div");
+      spotDiv.className = "spot";
+
+      if (spot.isOccupied) {
+        spotDiv.classList.add("occupied");
+      } else {
+        spotDiv.classList.add("vacant");
+      }
+
+      spotDiv.textContent = spot.spotName;
+      categoryDiv.appendChild(spotDiv);
+    });
+    parkingLotDiv.appendChild(categoryDiv);
+  });
+}
+
+function displayParkingLotBike(parkingLot) {
+  let parkingLotDiv = document.querySelector(".bikes");
+  parkingLot.forEach((category) => {
+    let categoryDiv = document.createElement("div");
+    categoryDiv.className = "category2";
+    category.forEach((spot) => {
+      let spotDiv = document.createElement("div");
+      spotDiv.className = "spot";
+
+      if (spot.isOccupied) {
+        spotDiv.classList.add("occupied");
+      } else {
+        spotDiv.classList.add("vacant");
+      }
+
+      spotDiv.textContent = spot.spotName;
+      categoryDiv.appendChild(spotDiv);
+    });
+    parkingLotDiv.appendChild(categoryDiv);
+  });
+}
+
+(async () => {
+  try {
+    const result = await checkParkingSetup();
+    let smallCar = createParkingLot(result.smallCar, "sc");
+    let largeCar = createParkingLot(result.largeCar, "lc");
+    let bike = createParkingLot(result.bike, "b");
+    console.log(bike);
+    displayParkingLot(smallCar);
+    displayParkingLotLarge(largeCar);
+    displayParkingLotBike(bike);
+  } catch (error) {
+    console.error(error);
+  }
+})();
