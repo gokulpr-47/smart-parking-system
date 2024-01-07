@@ -5,16 +5,17 @@ $.ajaxSetup({
 });
 
 async function checkParkingSetup() {
-  var check;
-  await $.get("http://localhost:3000/api/v1/services/getSpot")
-    .then(async (response) => {
-      console.log(response.value);
-      check = await response.value;
-    })
-    .catch((error) => {
-      console.error(error);
+  try {
+    const response = await $.ajax({
+      url: "http://localhost:3000/api/v1/services/parkingSpot",
+      method: "GET",
     });
-  return check;
+    const check = response.data;
+    console.log("check:", check);
+    return check;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 // Function to show the setup popup
@@ -41,10 +42,25 @@ function closeSetupPopup() {
   } else {
     alert("Please enter values for all parking spots.");
   }
+  // $.post(
+  //   "http://localhost:3000/api/v1/services/spot",
+  //   JSON.stringify({ data: values }), //change
+  //   function (data, status) {
+  //     console.log(data);
+  //   }
+  // );
+  let smallCar = createParkingLot(values.smallCar, "sc");
+  let largeCar = createParkingLot(values.largeCar, "lc");
+  let bike = createParkingLot(values.bike, "b");
+  const details = {
+    smallCar,
+    largeCar,
+    bike,
+  };
   $.post(
-    "http://localhost:3000/api/v1/services/spot",
-    JSON.stringify({ data: values }), //change
-    function (data, status) {
+    "http://localhost:3000/api/v1/services/parkingSpot",
+    JSON.stringify({ datas: details }),
+    function ({ data, status }) {
       console.log(data);
     }
   );
@@ -91,80 +107,82 @@ function createParkingLot(numCategories, categoryName) {
 
 function displayParkingLot(parkingLot) {
   let parkingLotDiv = document.querySelector(".small-car");
-  parkingLot.forEach((category) => {
-    let categoryDiv = document.createElement("div");
-    categoryDiv.className = "category2";
-    category.forEach((spot) => {
-      let spotDiv = document.createElement("div");
-      spotDiv.className = "spot";
+  parkingLot.forEach((categories) => {
+    categories.forEach((category) => {
+      let categoryDiv = document.createElement("div");
+      categoryDiv.className = "category2";
+      category.forEach((spot) => {
+        let spotDiv = document.createElement("div");
+        spotDiv.className = "spot";
 
-      if (spot.isOccupied) {
-        spotDiv.classList.add("occupied");
-      } else {
-        spotDiv.classList.add("vacant");
-      }
+        if (spot.isOccupied) {
+          spotDiv.classList.add("occupied");
+        } else {
+          spotDiv.classList.add("vacant");
+        }
 
-      spotDiv.textContent = spot.spotName;
-      categoryDiv.appendChild(spotDiv);
+        spotDiv.textContent = spot.spotName;
+        categoryDiv.appendChild(spotDiv);
+      });
+      parkingLotDiv.appendChild(categoryDiv);
     });
-    parkingLotDiv.appendChild(categoryDiv);
   });
 }
 
 function displayParkingLotLarge(parkingLot) {
   let parkingLotDiv = document.querySelector(".large-car");
-  parkingLot.forEach((category) => {
-    let categoryDiv = document.createElement("div");
-    categoryDiv.className = "category2";
-    category.forEach((spot) => {
-      let spotDiv = document.createElement("div");
-      spotDiv.className = "spot";
+  parkingLot.forEach((categories) => {
+    categories.forEach((category) => {
+      let categoryDiv = document.createElement("div");
+      categoryDiv.className = "category2";
+      category.forEach((spot) => {
+        let spotDiv = document.createElement("div");
+        spotDiv.className = "spot";
 
-      if (spot.isOccupied) {
-        spotDiv.classList.add("occupied");
-      } else {
-        spotDiv.classList.add("vacant");
-      }
+        if (spot.isOccupied) {
+          spotDiv.classList.add("occupied");
+        } else {
+          spotDiv.classList.add("vacant");
+        }
 
-      spotDiv.textContent = spot.spotName;
-      categoryDiv.appendChild(spotDiv);
+        spotDiv.textContent = spot.spotName;
+        categoryDiv.appendChild(spotDiv);
+      });
+      parkingLotDiv.appendChild(categoryDiv);
     });
-    parkingLotDiv.appendChild(categoryDiv);
   });
 }
 
 function displayParkingLotBike(parkingLot) {
   let parkingLotDiv = document.querySelector(".bikes");
-  parkingLot.forEach((category) => {
-    let categoryDiv = document.createElement("div");
-    categoryDiv.className = "category2";
-    category.forEach((spot) => {
-      let spotDiv = document.createElement("div");
-      spotDiv.className = "spot";
+  parkingLot.forEach((categories) => {
+    categories.forEach((category) => {
+      let categoryDiv = document.createElement("div");
+      categoryDiv.className = "category2";
+      category.forEach((spot) => {
+        let spotDiv = document.createElement("div");
+        spotDiv.className = "spot";
 
-      if (spot.isOccupied) {
-        spotDiv.classList.add("occupied");
-      } else {
-        spotDiv.classList.add("vacant");
-      }
+        if (spot.isOccupied) {
+          spotDiv.classList.add("occupied");
+        } else {
+          spotDiv.classList.add("vacant");
+        }
 
-      spotDiv.textContent = spot.spotName;
-      categoryDiv.appendChild(spotDiv);
+        spotDiv.textContent = spot.spotName;
+        categoryDiv.appendChild(spotDiv);
+      });
+      parkingLotDiv.appendChild(categoryDiv);
     });
-    parkingLotDiv.appendChild(categoryDiv);
   });
 }
 
 (async () => {
   try {
     const result = await checkParkingSetup();
-    let smallCar = createParkingLot(result.smallCar, "sc");
-    let largeCar = createParkingLot(result.largeCar, "lc");
-    let bike = createParkingLot(result.bike, "b");
-    console.log(bike);
-    displayParkingLot(smallCar);
-    displayParkingLotLarge(largeCar);
-    displayParkingLotBike(bike);
+    displayParkingLot(result.smallCar);
+    displayParkingLotLarge(result.largeCar);
+    displayParkingLotBike(result.bike);
   } catch (error) {
     console.error(error);
   }

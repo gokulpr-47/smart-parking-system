@@ -1,29 +1,11 @@
 import mongoose from "mongoose";
 
-const parkingSpot = new mongoose.Schema({
-  smallCar: [
-    {
-      spotName: String,
-      isOccupied: Boolean,
-    },
-  ],
-  largeCar: [
-    {
-      spotName: String,
-      isOccupied: Boolean,
-    },
-  ],
-  bike: [
-    {
-      spotName: String,
-      isOccupied: Boolean,
-    },
-  ],
-  parkingName: {
-    type: mongoose.Schema.Type.ObjectId,
-    ref: "Spot",
-  },
+const parkingSpotSchema = new mongoose.Schema({
+  smallCar: [{ type: mongoose.Schema.Types.Mixed }],
+  largeCar: [{ type: mongoose.Schema.Types.Mixed }],
+  bike: [{ type: mongoose.Schema.Types.Mixed }],
 });
 
-const ParkingSpot = mongoose.model("ParkingSpot", parkingSpot);
+const ParkingSpot = mongoose.model("ParkingSpot", parkingSpotSchema);
+
 export default ParkingSpot;

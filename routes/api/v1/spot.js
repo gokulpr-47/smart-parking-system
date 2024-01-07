@@ -6,7 +6,6 @@ let router = express.Router();
 router.post("/", async function (req, res) {
   try {
     var value = req.body.data;
-    console.log(value);
     const newValue = new Spot(value);
     let result = await newValue.save();
     res.send(JSON.stringify(result)).status(204);

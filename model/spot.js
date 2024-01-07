@@ -2,19 +2,13 @@ import mongoose from "mongoose";
 
 const spot = new mongoose.Schema(
   {
-    smallCar: {
-      type: Number,
-      index: true,
+    vehicleNumber: {
+      type: String,
+      unique: true,
     },
-
-    largeCar: {
-      type: Number,
-      index: true,
-    },
-
-    bike: {
-      type: Number,
-      index: true,
+    parkingSpot: {
+      type: String,
+      unique: true,
     },
   },
   { timestamps: true }

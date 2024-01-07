@@ -1,51 +1,55 @@
-function parkVehicle(parkingLot, vehicleType) {
-  for (let i = 0; i < parkingLot[vehicleType].length; i++) {
-    if (!parkingLot[vehicleType][i][1]) {
-      parkingLot[vehicleType][i] = [parkingLot[vehicleType][i][0], true];
-      return `Vehicle parked in spot ${parkingLot[vehicleType][i][0]}`;
+import spotServices from "./spot.js";
+
+const spotInstance = new spotServices();
+
+export default class park {
+  parkVehicle(parkingLot) {
+    for (let i = 0; i < parkingLot.length; i++) {
+      for (let j = 0; j < parkingLot[i].length; j++) {
+        for (let k = 0; k < parkingLot[i][j].length; k++) {
+          if (!parkingLot[i][j][k].isOccupied) {
+            parkingLot[i][j][k].isOccupied = true;
+            console.log(
+              `Vehicle parked in spot ${parkingLot[i][j][k].spotName}`
+            );
+            return {
+              parking: parkingLot,
+              spotName: parkingLot[i][j][k].spotName,
+            };
+          }
+        }
+      }
     }
+    return "No available spots";
   }
-  return "No available spots";
+
+  vehicleExit(parkingLot, spotName) {
+    for (let i = 0; i < parkingLot.length; i++) {
+      for (let j = 0; j < parkingLot[i].length; j++) {
+        for (let k = 0; k < parkingLot[i][j].length; k++) {
+          if (parkingLot[i][j][k].spotName === spotName) {
+            parkingLot[i][j][k].isOccupied = false;
+            console.log(`Vehicle exited from spot ${spotName}`);
+            return {
+              spotName,
+              parkingLot,
+            };
+          }
+        }
+      }
+    }
+    return "Spot not found";
+  }
 }
 
-function vehicleExit(parkingLot, vehicleType, spotName) {
-  for (let i = 0; i < parkingLot[vehicleType].length; i++) {
-    if (parkingLot[vehicleType][i][0] === spotName) {
-      parkingLot[vehicleType][i] = [spotName, false];
-      return `Vehicle exited from spot ${spotName}`;
-    }
-  }
-  return "Spot not found";
-}
+// async function getDetails() {
+//   const result = await spotInstance.getSpotDetails();
+//   return result;
+// }
 
-const smallCarParkingLot = [
-  ["S1", false],
-  ["S2", false],
-  ["S3", false],
-  ["S4", false],
-  ["S5", false],
-  ["S6", false],
-];
-const largeCarParkingLot = [
-  ["L1", false],
-  ["L2", false],
-  ["L3", false],
-  ["L4", false],
-  ["L5", false],
-  ["L6", false],
-];
-const bikeParkingLot = [
-  ["B1", false],
-  ["B2", false],
-  ["B3", false],
-  ["B4", false],
-  ["B5", false],
-  ["B6", false],
-];
-
-const parkingLot = [smallCarParkingLot, largeCarParkingLot, bikeParkingLot];
-
-console.log(parkVehicle(parkingLot, 0));
-console.log(parkVehicle(parkingLot, 1));
-console.log(parkVehicle(parkingLot, 2));
-console.log(vehicleExit(parkingLot, 0, "S1"));
+// (async () => {
+//   const parkingLot = await getDetails();
+//   const smallCar = parkingLot.smallCar;
+//   console.log(parkVehicle(smallCar));
+//   // console.log(vehicleExit(smallCarParkingLot, "S11"));
+// })();
