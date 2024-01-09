@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .category {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .spot {
+        width: 50px;
+        height: 25px;
+        margin: 5px;
+        text-align: center;
+        line-height: 25px;
+        border: 1px solid #000;
+      }
+
+      .occupied {
+        background-color: red;
+        color: white;
+      }
+
+      .vacant {
+        background-color: green;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <img src="download.png" class="logo" height="50px" width="auto" alt="" />
+    </div>
+    <div class="nav">
+      <div><a href="./index.html">Home</a></div>
+      <div><a href="">Vehicle database</a></div>
+      <div><a href="">Payment Details</a></div>
+      <div><a href="./parking-slot.html">Parking slots</a></div>
+      <div><a href="./exit.html">Exit</a></div>
+    </div>
+
+    <div class="overlay" id="popupOverlay">
+      <div class="popup">
+        <span class="close-btn" onclick="closeSetupPopup()">X</span>
+        <h2>Parking Setup</h2>
+        <p>
+          Enter the number of parking spots for large cars, small cars, and
+          bikes:
+        </p>
+        <label for="largeCarsSpot">Large Cars:</label>
+        <input type="number" id="largeCarsSpot" required /><br />
+        <label for="smallCarsSpot">Small Cars:</label>
+        <input type="number" id="smallCarsSpot" required /><br />
+        <label for="bikesSpot">Bikes:</label>
+        <input type="number" id="bikesSpot" required /><br />
+        <button onclick="closeSetupPopup()">Save</button>
+      </div>
+    </div>
+
+    <div class="info right">
+      No of Parking Space Available: <br />
+      No of Parking Space Occupied:
+    </div>
+    <div class="space-container">
+      <div class="small-car"></div>
+      <div class="large-car"></div>
+      <div class="bikes"></div>
+    </div>
+    <!-- <div id="parking-container"></div> -->
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./parking.js"></script>
+  </body>
+</html>

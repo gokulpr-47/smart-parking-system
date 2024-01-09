@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        var urlParams = new URLSearchParams(window.location.search);
+        var data = urlParams.get("data");
+
+        // Decode the URL parameter
+        var decodedData = decodeURIComponent(data);
+
+        var imgElement = document.getElementById("qrcode");
+
+        // Set the src attribute of the img element to the decoded data
+        console.log(decodedData);
+        imgElement.src = decodedData;
+      };
+    </script>
+  </head>
+  <body>
+    <img id="qrcode" src="" alt="" width="30%" />
+  </body>
+</html>
