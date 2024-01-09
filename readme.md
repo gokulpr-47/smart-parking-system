@@ -22,9 +22,20 @@ location to get optimal usage.
 
 ## Features
 
-- **User-friendly Interface:** Enjoy a sleek and intuitive user interface that makes navigation and task management a breeze.
+## 1. Space Optimization
 
-- **Customizable Workflows:** Tailor your workflows to fit your team's unique needs, with customizable features such as task prioritization, labeling, and more.
+- **Dynamic Allocation:** Utilizes real-time data to dynamically allocate parking spaces based on demand.
+- **Automated Parking Guidance:** Directs drivers to available parking spots, minimizing search time and congestion.
+
+## 2. Cost Efficiency
+
+- **Pricing Models:** Implements flexible pricing models based on factors such as demand, time of day, and special events.
+- **Resource Allocation:** Optimizes resource allocation to reduce operational costs and maximize revenue.
+
+## 3. User-Friendly Interface
+
+- **Mobile App Integration:** Allows users to check real-time availability, reserve spots, and make payments through a dedicated mobile app.
+- **Notifications:** Sends timely alerts to users regarding parking availability, reservations, and payment reminders.
 
 ## Installation
 
