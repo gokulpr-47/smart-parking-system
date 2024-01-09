@@ -1,5 +1,6 @@
 // WebcamJS v1.0.25 - http://github.com/jhuckaby/webcamjs - MIT Licensed
 (function (e) {
+  // e.preventDefault();
   var t;
   function a() {
     var e = Error.apply(this, arguments);

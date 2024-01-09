@@ -8,4 +8,5 @@ export default {
   key_id: process.env.key_id,
   key_secret: process.env.key_secret,
   databaseURL: process.env.databaseURL,
+  parkingId: process.env.parkingId,
 };

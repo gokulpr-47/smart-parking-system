@@ -11,7 +11,6 @@ async function checkParkingSetup() {
       method: "GET",
     });
     const check = response.data;
-    console.log("check:", check);
     return check;
   } catch (error) {
     console.error(error);
@@ -61,9 +60,10 @@ function closeSetupPopup() {
     "http://localhost:3000/api/v1/services/parkingSpot",
     JSON.stringify({ datas: details }),
     function ({ data, status }) {
-      console.log(data);
+      // console.log(data);
     }
   );
+  window.location.reload();
 }
 
 // Check if setup is needed and show popup
@@ -180,6 +180,7 @@ function displayParkingLotBike(parkingLot) {
 (async () => {
   try {
     const result = await checkParkingSetup();
+    console.log(result);
     displayParkingLot(result.smallCar);
     displayParkingLotLarge(result.largeCar);
     displayParkingLotBike(result.bike);

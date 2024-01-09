@@ -5,6 +5,7 @@ import Spot from "../../../model/spot.js";
 import park from "../../../services/algorithm.js";
 import spotServices from "../../../services/spot.js";
 import ParkingSpot from "../../../model/parkingSpot.js";
+import config from "../../../config/index.js";
 
 const anprInstance = new anprServices();
 const parkInstance = new park();
@@ -15,8 +16,8 @@ let router = express.Router();
 router.post("/", async function (req, res) {
   const image_path = "./assets/img/image4.jpg";
   try {
-    // const num = await anprInstance.getVehicleNumber(req.body.file);    //change
-    const num = await anprInstance.getVehicleNumber(image_path);
+    const num = await anprInstance.getVehicleNumber(req.body.file); //change
+    // const num = await anprInstance.getVehicleNumber(image_path);
     res.setHeader("Content-Type", "application/json");
     res.setHeader("Cache-Control", `public, max-age=10`);
     let data = {
@@ -36,11 +37,15 @@ router.post("/", async function (req, res) {
       await newValue.save();
       let update = { $set: { smallCar: resultSpot.parking } };
       const updateResult = await ParkingSpot.findOneAndUpdate(
-        { _id: "659a82c0e5e74986b4b82564" },
+        { placeName: "manipal" },
         update,
         { returnNewDocument: true }
       );
-    } else if (result.vehicle_type == "SUV") {
+    } else if (
+      result.vehicle_type == "SUV" ||
+      result.vehicle_type == "Big Truck" ||
+      result.vehicle_type == "Pickup Truck"
+    ) {
       const spot = spots.largeCar;
       const resultSpot = parkInstance.parkVehicle(spot);
       const newValue = new Spot({
@@ -48,10 +53,10 @@ router.post("/", async function (req, res) {
         parkingSpot: resultSpot.spotName,
       });
       await newValue.save();
-      console.log(resultSpot.parking);
+      // console.log(resultSpot.parking);
       let update = { $set: { largeCar: resultSpot.parking } };
       const updateResult = await ParkingSpot.findOneAndUpdate(
-        { _id: "659a5bc93cdc8da341aba1e2" },
+        { placeName: "manipal" },
         update,
         { returnNewDocument: true }
       );
@@ -63,10 +68,10 @@ router.post("/", async function (req, res) {
         parkingSpot: resultSpot.spotName,
       });
       await newValue.save();
-      console.log(resultSpot.parking);
+      // console.log(resultSpot.parking);
       let update = { $set: { bike: resultSpot.parking } };
       const updateResult = await ParkingSpot.findOneAndUpdate(
-        { _id: "659a5bc93cdc8da341aba1e2" },
+        { placeName: "manipal" },
         update,
         { returnNewDocument: true }
       );

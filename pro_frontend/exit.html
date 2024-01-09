@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="header">
+      <img src="download.png" class="logo" height="50px" width="auto" alt="" />
+    </div>
+    <div class="nav">
+      <div><a href="./index.html">Home</a></div>
+      <div><a href="">Vehicle database</a></div>
+      <div><a href="">Payment Details</a></div>
+      <div><a href="./parking-slot.html">Parking slots</a></div>
+    </div>
+    <p>live feed</p>
+    <div class="frame1">
+      <div class="live">
+        <div id="my_camera"></div>
+        <div>
+          <input type="button" class="exitButton" value="exit Snapshot" />
+        </div>
+      </div>
+      <div class="info">
+        <h2>Vehicle details</h2>
+        <br />
+        <p>
+          the vehicle number is: <br />
+          the vehicle type is: <br />
+          the allocated parking space is: <br />
+          Vehicle Entry Time: <br />
+        </p>
+      </div>
+    </div>
+    <button class="ticket button">Generate ticket</button>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="./webcam.js"></script>
+    <script src="app.js"></script>
+    <script>
+      // alert("backend called");
+    </script>
+  </body>
+</html>
